@@ -72,19 +72,19 @@ fun WelcomeScreen(){
             end.linkTo(parent.end)
         }
     }
-    ConstraintLayout(constraints, modifier = Modifier
-        .fillMaxSize()
-        .background(Color.White)) {
-        Box(
+    ConstraintLayout(
+        constraints,
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
+        Image(
             modifier = Modifier
                 .layoutId("image")
-                .padding(16.dp)
-        ){
-            Image(
-                painter = painterResource(R.drawable.welcome_screen_image),
-                contentDescription = "WelcomeScreenImage"
-            )
-        }
+                .padding(16.dp),
+            painter = painterResource(R.drawable.welcome_screen_image),
+            contentDescription = "WelcomeScreenImage"
+        )
         Box (
             modifier = Modifier
                 .layoutId("headline")
