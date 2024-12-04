@@ -5,6 +5,7 @@ import android.text.SpannableString
 import android.text.style.ClickableSpan
 import android.widget.EditText
 import android.widget.RadioButton
+import android.widget.ScrollView
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -68,7 +69,9 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
+import androidx.navigation.NavController
 import com.example.project_1.R
+import com.example.project_1.WelcomeScreenRoute
 import com.example.project_1.ui.theme.ButtonPrimary
 import com.example.project_1.ui.theme.TextDarkPrimary
 import com.google.android.material.textfield.TextInputLayout
@@ -76,7 +79,9 @@ import org.w3c.dom.Text
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegistrationScreen(){
+fun RegistrationScreen(
+    navController: NavController
+){
     val constraints = ConstraintSet {
         val topBar = createRefFor("topBar")
         val form = createRefFor("form")
@@ -88,6 +93,7 @@ fun RegistrationScreen(){
         constrain(topBar){
             top.linkTo(topGuideLine)
             start.linkTo(parent.start)
+
         }
         constrain(form){
             top.linkTo(topBar.bottom)
@@ -114,15 +120,14 @@ fun RegistrationScreen(){
         Row(
            modifier = Modifier
                .layoutId("topBar"),
-//               .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
             Icon(
                 modifier = Modifier
-//                    .background(Color.Blue)
                     .padding(start = 16.dp)
-                    .clickable { },
+                    .clickable {
+                        navController.navigate(WelcomeScreenRoute)
+                    },
                 painter = painterResource(id = R.drawable.back_arrow),
                 contentDescription = "back_arrow"
             )

@@ -29,13 +29,18 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
+import androidx.navigation.NavController
+import com.example.project_1.LoginScreenRoute
 import com.example.project_1.R
+import com.example.project_1.RegistrationScreenRoute
 import com.example.project_1.ui.theme.ButtonPrimary
 import com.example.project_1.ui.theme.TextDarkPrimary
 import com.example.project_1.ui.theme.TextDarkSecondary
 
 @Composable
-fun WelcomeScreen(){
+fun WelcomeScreen(
+    navController: NavController
+){
     val headline = "Пожалуй, лучший фитнес трекер в ДВФУ"
     val subheading = "Созданный студентами"
     val constraints = ConstraintSet {
@@ -50,6 +55,8 @@ fun WelcomeScreen(){
         constrain(image){
             top.linkTo(topGuideLine)
             start.linkTo(parent.start)
+            end.linkTo(parent.end)
+
         }
         constrain(headline){
             top.linkTo(image.bottom)
@@ -123,7 +130,9 @@ fun WelcomeScreen(){
                 contentPadding = PaddingValues(0.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonPrimary),
                 shape = RoundedCornerShape(corner = CornerSize(4.dp)),
-                onClick = { /*TODO*/ }
+                onClick = {
+                    navController.navigate(RegistrationScreenRoute)
+                }
             ) {
                 Text(
                     text = "Зарегистрироваться",
@@ -136,7 +145,9 @@ fun WelcomeScreen(){
             Button(
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                 shape = RoundedCornerShape(corner = CornerSize(4.dp)),
-                onClick = { /*TODO*/ }
+                onClick = {
+                    navController.navigate(LoginScreenRoute)
+                }
             ) {
                 Text(
                     text = "Уже есть аккаунт?",
