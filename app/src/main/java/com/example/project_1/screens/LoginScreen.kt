@@ -7,10 +7,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,52 +33,25 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.navigation.NavController
+import com.example.project_1.ActivitiesScreenRoute
 import com.example.project_1.R
 import com.example.project_1.WelcomeScreenRoute
-import com.example.project_1.ui.theme.ButtonPrimary
+import com.example.project_1.ui.theme.PrimaryBlue
 import com.example.project_1.ui.theme.TextDarkPrimary
 
 @Composable
 fun LoginScreen(
     navController: NavController
 ){
-    val constraints = ConstraintSet {
-        val topBar = createRefFor("topBar")
-        val image = createRefFor("image")
-        val form = createRefFor("form")
-        val loginButton = createRefFor("loginButton")
-
-        val topGuideLine = createGuidelineFromTop(24.dp)
-
-        constrain(topBar){
-            top.linkTo(topGuideLine)
-            start.linkTo(parent.start)
-        }
-        constrain(image){
-            top.linkTo(topBar.bottom)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-        }
-        constrain(form){
-            top.linkTo(image.bottom)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-        }
-        constrain(loginButton){
-            top.linkTo(form.bottom)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-        }
-    }
-    ConstraintLayout (
-        constraints,
+    Column (
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally
     ){
         Row(
             modifier = Modifier
-                .layoutId("topBar"),
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
@@ -104,14 +75,12 @@ fun LoginScreen(
         }
         Image(
             modifier = Modifier
-                .layoutId("image")
                 .padding(horizontal = 70.dp, vertical = 16.dp),
             painter = painterResource(R.drawable.welcome_screen_image),
             contentDescription = "WelcomeScreenImage"
         )
         Column (
             modifier = Modifier
-                .layoutId("form")
                 .fillMaxWidth()
                 .padding(start = 16.dp, end = 16.dp, bottom = 16.dp, top = 8.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -123,13 +92,14 @@ fun LoginScreen(
         }
         Button(
             modifier = Modifier
-                .layoutId("loginButton")
                 .fillMaxWidth()
                 .padding(16.dp),
             contentPadding = PaddingValues(0.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = ButtonPrimary),
+            colors = ButtonDefaults.buttonColors(containerColor = PrimaryBlue),
             shape = RoundedCornerShape(corner = CornerSize(4.dp)),
-            onClick = { /*TODO*/ }
+            onClick = {
+                navController.navigate(ActivitiesScreenRoute)
+            }
         ) {
             Text(
                 text = "Войти",

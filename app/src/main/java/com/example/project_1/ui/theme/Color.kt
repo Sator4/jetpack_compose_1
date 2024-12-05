@@ -13,4 +13,5 @@ val Pink40 = Color(0xFF7D5260)
 val TextDarkPrimary = Color(0xFF101010)
 val TextDarkSecondary = Color(0xFF808080)
 
-val ButtonPrimary = Color(0xFF4B09F3)
+val PrimaryBlue = Color(0xFF4B09F3)
+val BackgroundGray = Color(0xFFF0F0F0)
