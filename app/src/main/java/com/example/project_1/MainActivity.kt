@@ -11,8 +11,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.project_1.screens.ActivitiesScreen.ActivitiesScreen
+import com.example.project_1.screens.ActivitiesScreen.ActivityDetailsScreen
+import com.example.project_1.screens.ActivitiesScreen.MyActivities
+import com.example.project_1.screens.ActivitiesScreen.OthersActivities
 import com.example.project_1.screens.LoginScreen
+import com.example.project_1.screens.NewActivityScreen
+import com.example.project_1.screens.ProfileScreen.ChangePasswordScreen
+import com.example.project_1.screens.ProfileScreen.ProfileScreen
 import com.example.project_1.screens.RegistrationScreen
 import com.example.project_1.screens.WelcomeScreen
 import kotlinx.serialization.Serializable
@@ -28,7 +33,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = LoginScreenRoute
+                    startDestination = MyActivitiesRoute
                 ){
                     composable<WelcomeScreenRoute>{
                         WelcomeScreen(navController)
@@ -39,8 +44,23 @@ class MainActivity : ComponentActivity() {
                     composable<RegistrationScreenRoute> {
                         RegistrationScreen(navController)
                     }
-                    composable<ActivitiesScreenRoute> {
-                        ActivitiesScreen(navController)
+                    composable<MyActivitiesRoute> {
+                        MyActivities(navController)
+                    }
+                    composable<OthersActivitiesRoute> {
+                        OthersActivities(navController)
+                    }
+                    composable<ProfileScreenRoute> {
+                        ProfileScreen(navController)
+                    }
+                    composable<ChangePasswordScreenRoute> {
+                        ChangePasswordScreen(navController)
+                    }
+                    composable<ActivityDetailsScreenRoute> {
+                        ActivityDetailsScreen(navController)
+                    }
+                    composable<NewActivityScreenRoute> {
+                        NewActivityScreen(navController)
                     }
                 }
 
@@ -60,10 +80,16 @@ object LoginScreenRoute
 object RegistrationScreenRoute
 
 @Serializable
-object ActivitiesScreenRoute
+object MyActivitiesRoute
+
+@Serializable
+object OthersActivitiesRoute
 
 @Serializable
 object ProfileScreenRoute
+
+@Serializable
+object ChangePasswordScreenRoute
 
 @Serializable
 object ActivityDetailsScreenRoute

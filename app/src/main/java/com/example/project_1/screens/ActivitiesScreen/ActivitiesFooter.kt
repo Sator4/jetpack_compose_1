@@ -19,13 +19,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.project_1.MyActivitiesRoute
+import com.example.project_1.ProfileScreenRoute
 import com.example.project_1.R
+import com.example.project_1.ui.theme.PrimaryBlue
+import com.example.project_1.ui.theme.TextDarkPrimary
 
 @Composable
 fun ActivitiesFooter(
     navController: NavController,
-    currentTab: Int,
-    selectFooterTab: (selected: Int) -> Unit
+    currentTab: Int
 ){
     Row (
         modifier = Modifier
@@ -36,23 +39,29 @@ fun ActivitiesFooter(
             modifier = Modifier
                 .fillMaxWidth().weight(1f)
                 .height(56.dp)
-                .clickable { selectFooterTab(0) },
+                .clickable { navController.navigate( MyActivitiesRoute ) },
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ){
             Icon(painter = if (currentTab == 0) painterResource(id = R.drawable.whistle_blue) else painterResource(id = R.drawable.whistle_grey), contentDescription = "")
-            Text(text = "Активность")
+            Text(
+                text = "Активность",
+                color = if (currentTab == 0) PrimaryBlue else TextDarkPrimary
+            )
         }
         Column (
             modifier = Modifier
                 .fillMaxWidth().weight(1f)
                 .height(56.dp)
-                .clickable { selectFooterTab(1) },
+                .clickable { navController.navigate(ProfileScreenRoute) },
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ){
             Icon(painter = if (currentTab == 1) painterResource(id = R.drawable.person_blue) else painterResource(id = R.drawable.person_grey), contentDescription = "")
-            Text(text = "Профиль")
+            Text(
+                text = "Профиль",
+                color = if (currentTab == 1) PrimaryBlue else TextDarkPrimary
+            )
         }
     }
 }

@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,9 +35,11 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.navigation.NavController
-import com.example.project_1.ActivitiesScreenRoute
+import com.example.project_1.MyActivitiesRoute
 import com.example.project_1.R
 import com.example.project_1.WelcomeScreenRoute
+import com.example.project_1.screens.elements.FormField
+import com.example.project_1.screens.elements.WideButton
 import com.example.project_1.ui.theme.PrimaryBlue
 import com.example.project_1.ui.theme.TextDarkPrimary
 
@@ -64,13 +68,13 @@ fun LoginScreen(
                 contentDescription = "back_arrow"
             )
             Text(
+                modifier = Modifier.padding(16.dp),
                 text = "Вход",
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Bold,
                 color = TextDarkPrimary,
                 fontSize = 20.sp,
                 lineHeight = 24.sp,
-                modifier = Modifier.padding(16.dp)
             )
         }
         Image(
@@ -89,22 +93,10 @@ fun LoginScreen(
             var password by remember { mutableStateOf("") }
             FormField(login, { login = it })
             FormField(password, { password = it }, true)
-        }
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            contentPadding = PaddingValues(0.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = PrimaryBlue),
-            shape = RoundedCornerShape(corner = CornerSize(4.dp)),
-            onClick = {
-                navController.navigate(ActivitiesScreenRoute)
-            }
-        ) {
-            Text(
-                text = "Войти",
-                fontSize = 16.sp,
-                modifier = Modifier.padding(vertical = 12.dp)
+            Spacer(modifier = Modifier.height(0.dp))
+            WideButton(
+                navigate = { navController.navigate( MyActivitiesRoute ) },
+                text = "Войти"
             )
         }
     }
