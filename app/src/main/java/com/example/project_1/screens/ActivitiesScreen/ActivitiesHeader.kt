@@ -15,13 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.project_1.MyActivitiesRoute
+import com.example.project_1.OthersActivitiesRoute
 import com.example.project_1.ui.theme.PrimaryBlue
 
 @Composable
 fun ActivitiesHeader(
     navController: NavController,
-    currentTab: Int,
-    selectHeaderTab: (selectedTab: Int) -> Unit
+    currentTab: Int
 ){
     Row (
         modifier = Modifier
@@ -33,7 +34,7 @@ fun ActivitiesHeader(
                 .background(Color.White)
                 .fillMaxWidth().weight(1f)
                 .height(48.dp)
-                .clickable { selectHeaderTab(0) },
+                .clickable { navController.navigate(MyActivitiesRoute) },
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ){
@@ -57,7 +58,7 @@ fun ActivitiesHeader(
             modifier = Modifier
                 .fillMaxWidth().weight(1f)
                 .height(48.dp)
-                .clickable { selectHeaderTab(1) },
+                .clickable { navController.navigate(OthersActivitiesRoute) },
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ){

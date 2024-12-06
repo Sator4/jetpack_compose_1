@@ -14,4 +14,5 @@ val TextDarkPrimary = Color(0xFF101010)
 val TextDarkSecondary = Color(0xFF808080)
 
 val PrimaryBlue = Color(0xFF4B09F3)
+val PrimaryRed = Color(0xFFB00020)
 val BackgroundGray = Color(0xFFF0F0F0)

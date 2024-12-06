@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,14 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,7 +24,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
@@ -40,23 +32,19 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.ConstraintSet
 import androidx.navigation.NavController
-import com.example.project_1.ActivitiesScreenRoute
+import com.example.project_1.MyActivitiesRoute
 import com.example.project_1.R
 import com.example.project_1.WelcomeScreenRoute
-import com.example.project_1.screens.ActivitiesScreen.ActivitiesScreen
+import com.example.project_1.screens.elements.WideButton
+import com.example.project_1.screens.elements.FormField
 import com.example.project_1.ui.theme.PrimaryBlue
 import com.example.project_1.ui.theme.TextDarkPrimary
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegistrationScreen(
     navController: NavController
@@ -91,11 +79,12 @@ fun RegistrationScreen(
                 modifier = Modifier.padding(16.dp)
             )
         }
-        Column {
+        Column(
+            Modifier.padding(16.dp)
+        ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                    .fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 var login by remember { mutableStateOf("") }
@@ -107,23 +96,21 @@ fun RegistrationScreen(
                 FormField(password, { password = it }, true)
                 FormField(repeatPassword, { repeatPassword = it }, true)
             }
-
             Spacer(modifier = Modifier.height(8.dp))
             Text(
+                modifier = Modifier.padding(vertical = 16.dp),
                 text = "Пол",
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Bold,
                 color = TextDarkPrimary,
                 fontSize = 20.sp,
-                lineHeight = 24.sp,
-                modifier = Modifier.padding(horizontal = 16.dp)
+                lineHeight = 24.sp
             )
             val sexes = listOf("Мужской", "Женский", "Линолеум", "Ковролин")
             var selectedSex by remember { mutableStateOf(sexes[0]) }
             Column (
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                    .fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ){
                 sexes.forEach { sex ->
@@ -152,29 +139,12 @@ fun RegistrationScreen(
                     }
                 }
             }
-        }
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            contentPadding = PaddingValues(0.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = PrimaryBlue),
-            shape = RoundedCornerShape(corner = CornerSize(4.dp)),
-            onClick = {
-                navController.navigate(ActivitiesScreenRoute)
-            }
-        ) {
-            Text(
-                text = "Зарегистрироваться",
-                fontSize = 16.sp,
-                modifier = Modifier.padding(vertical = 12.dp)
+            Spacer(modifier = Modifier.height(32.dp))
+            WideButton(
+                navigate = { navController.navigate( MyActivitiesRoute ) },
+                text = "Зарегистрироваться"
             )
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        Box (
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-            ){
+            Spacer(modifier = Modifier.height(24.dp))
             Text(
                 fontSize = 12.sp,
                 lineHeight = 18.sp,
@@ -200,30 +170,6 @@ fun RegistrationScreen(
                     }
                 }
             )
-
         }
     }
-}
-
-@Composable
-fun FormField(
-    text: String,
-    onTextChange: (String) -> Unit,
-    password: Boolean = false
-) {
-    var passwordVisible by remember { mutableStateOf(password) }
-    OutlinedTextField(
-        modifier = Modifier
-            .height(48.dp)
-            .fillMaxWidth(),
-        value = text,
-        onValueChange = onTextChange,
-        visualTransformation = if (passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
-        trailingIcon =  { if (password) {
-                IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                    Icon(painter = painterResource(id = R.drawable.eye), contentDescription = "eye")
-                }
-            }
-        }
-    )
 }
