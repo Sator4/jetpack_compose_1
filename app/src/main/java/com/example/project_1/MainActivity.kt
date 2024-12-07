@@ -3,7 +3,8 @@ package com.example.project_1
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
@@ -11,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.project_1.screens.ActivitiesScreen.ActivityDetailsScreen
+import com.example.project_1.screens.ActivityDetailsScreen
 import com.example.project_1.screens.ActivitiesScreen.MyActivities
 import com.example.project_1.screens.ActivitiesScreen.OthersActivities
 import com.example.project_1.screens.LoginScreen
@@ -33,7 +34,9 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = MyActivitiesRoute
+                    startDestination = WelcomeScreenRoute,
+                    enterTransition = { EnterTransition.None },
+                    exitTransition = { ExitTransition.None }
                 ){
                     composable<WelcomeScreenRoute>{
                         WelcomeScreen(navController)
@@ -56,7 +59,11 @@ class MainActivity : ComponentActivity() {
                     composable<ChangePasswordScreenRoute> {
                         ChangePasswordScreen(navController)
                     }
-                    composable<ActivityDetailsScreenRoute> {
+//                    composable<ActivityDetailsScreenRoute> {
+//                        val args = it.toRoute<ActivityDetailsScreenRoute>()
+//                        ActivityDetailsScreen(navController, args.activity)
+//                    }
+                    composable<ActivityDetailsScreenRoute>{
                         ActivityDetailsScreen(navController)
                     }
                     composable<NewActivityScreenRoute> {
@@ -93,6 +100,9 @@ object ChangePasswordScreenRoute
 
 @Serializable
 object ActivityDetailsScreenRoute
+//data class ActivityDetailsScreenRoute (
+//    val activity: ActivityClass
+//)
 
 @Serializable
 object NewActivityScreenRoute

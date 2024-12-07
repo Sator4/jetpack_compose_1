@@ -3,7 +3,6 @@ package com.example.project_1.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
@@ -42,7 +40,6 @@ import com.example.project_1.R
 import com.example.project_1.WelcomeScreenRoute
 import com.example.project_1.screens.elements.WideButton
 import com.example.project_1.screens.elements.FormField
-import com.example.project_1.ui.theme.PrimaryBlue
 import com.example.project_1.ui.theme.TextDarkPrimary
 
 @Composable
@@ -72,7 +69,7 @@ fun RegistrationScreen(
             Text(
                 text = "Регистрация",
                 fontFamily = FontFamily.SansSerif,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.W600,
                 color = TextDarkPrimary,
                 fontSize = 20.sp,
                 lineHeight = 24.sp,
@@ -101,7 +98,7 @@ fun RegistrationScreen(
                 modifier = Modifier.padding(vertical = 16.dp),
                 text = "Пол",
                 fontFamily = FontFamily.SansSerif,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.W600,
                 color = TextDarkPrimary,
                 fontSize = 20.sp,
                 lineHeight = 24.sp
@@ -141,7 +138,7 @@ fun RegistrationScreen(
             }
             Spacer(modifier = Modifier.height(32.dp))
             WideButton(
-                navigate = { navController.navigate( MyActivitiesRoute ) },
+                onClick = { navController.navigate( MyActivitiesRoute ) },
                 text = "Зарегистрироваться"
             )
             Spacer(modifier = Modifier.height(24.dp))

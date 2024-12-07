@@ -1,7 +1,6 @@
 package com.example.project_1.screens.elements
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -22,17 +21,18 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.project_1.ActivityDetailsScreenRoute
 import com.example.project_1.ui.theme.PrimaryBlue
 import com.example.project_1.ui.theme.TextDarkPrimary
 import com.example.project_1.ui.theme.TextDarkSecondary
+import com.example.project_1.ui.theme.W400_16_24
+import com.example.project_1.ui.theme.W700_24_35
 
 @Composable
 fun ActivityCard(
-    distance: String,
-    time: String,
-    activity: String,
-    date: String,
-    usertag: String? = null
+    navController: NavController,
+    activity: ActivityClass
 ){
     Box(
         modifier = Modifier
@@ -44,6 +44,7 @@ fun ActivityCard(
                 border = BorderStroke(0.dp, Color.Transparent),
                 shape = RoundedCornerShape(4.dp)
             )
+            .clickable { navController.navigate(ActivityDetailsScreenRoute) }
     ){
         Column (
             modifier = Modifier
@@ -54,56 +55,20 @@ fun ActivityCard(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ){
-                Text(
-                    text = distance,
-                    fontFamily = FontFamily.SansSerif,
-                    fontWeight = FontWeight.W700,
-                    color = TextDarkPrimary,
-                    fontSize = 24.sp,
-                    lineHeight = 35.sp
-                )
-                if (usertag != null){
-                    Text(
-                        text = usertag,
-                        fontFamily = FontFamily.SansSerif,
-                        fontWeight = FontWeight.W400,
-                        color = PrimaryBlue,
-                        fontSize = 16.sp,
-                        lineHeight = 24.sp,
-                        modifier = Modifier.clickable {  }
-                    )
+                W700_24_35(activity.distance, TextDarkPrimary)
+                if (activity.usertag != null){
+                    W400_16_24(activity.usertag, PrimaryBlue, Modifier.clickable {  })
                 }
             }
             Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = time,
-                fontFamily = FontFamily.SansSerif,
-                fontWeight = FontWeight.W400,
-                color = TextDarkPrimary,
-                fontSize = 16.sp,
-                lineHeight = 24.sp
-            )
+            W400_16_24(activity.time, TextDarkPrimary)
             Spacer(modifier = Modifier.height(4.dp))
             Row (
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ){
-                Text(
-                    text = activity,
-                    fontFamily = FontFamily.SansSerif,
-                    fontWeight = FontWeight.W400,
-                    color = TextDarkPrimary,
-                    fontSize = 16.sp,
-                    lineHeight = 24.sp
-                )
-                Text(
-                    text = date,
-                    fontFamily = FontFamily.SansSerif,
-                    fontWeight = FontWeight.W400,
-                    color = TextDarkSecondary,
-                    fontSize = 16.sp,
-                    lineHeight = 24.sp
-                )
+                W400_16_24(activity.activity, TextDarkPrimary)
+                W400_16_24(activity.date, TextDarkSecondary)
             }
         }
     }

@@ -2,16 +2,12 @@ package com.example.project_1.screens.ProfileScreen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -80,7 +76,7 @@ fun ChangePasswordScreen(
             FormField(text = repeat_password, onTextChange = { repeat_password = it })
             Spacer(modifier = Modifier.height(0.dp))
             WideButton(
-                navigate = { navController.navigate( ProfileScreenRoute ) },
+                onClick = { navController.navigate( ProfileScreenRoute ) },
                 color = PrimaryBlue,
                 text = "Принять"
             )

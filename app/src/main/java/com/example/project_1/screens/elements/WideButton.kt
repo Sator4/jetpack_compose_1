@@ -14,12 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.project_1.ui.theme.PrimaryBlue
 
 @Composable
 fun WideButton(
-    navigate: () -> Unit,
+    onClick: () -> Unit,
     color: Color = PrimaryBlue,
     text: String
 ){
@@ -30,7 +29,7 @@ fun WideButton(
         contentPadding = PaddingValues(0.dp),
         colors = ButtonDefaults.buttonColors(containerColor = color),
         shape = RoundedCornerShape(corner = CornerSize(4.dp)),
-        onClick = { navigate() }
+        onClick = { onClick() }
     ) {
         Text(
             text = text,
