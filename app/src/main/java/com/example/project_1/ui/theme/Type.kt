@@ -1,34 +1,46 @@
 package com.example.project_1.ui.theme
 
-import androidx.compose.material3.Typography
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// Set of Material typography styles to start with
-val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
+
+@Composable
+fun W400_16_24(
+    text: String,
+    color: Color,
+    modifier: Modifier = Modifier
+){
+    Text(
+        text = text,
+        fontFamily = FontFamily.SansSerif,
+        fontWeight = FontWeight.W400,
+        color = color,
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        modifier = modifier
     )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
+}
+
+@Composable
+fun W700_24_35(
+    text: String,
+    color: Color,
+    modifier: Modifier = Modifier
+){
+    Text(
+        text = text,
+        fontFamily = FontFamily.SansSerif,
+        fontWeight = FontWeight.W700,
+        color = color,
+        fontSize = 24.sp,
+        lineHeight = 35.sp,
+        modifier = modifier
     )
-    */
-)
+}

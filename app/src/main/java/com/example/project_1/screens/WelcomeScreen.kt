@@ -35,6 +35,7 @@ import com.example.project_1.RegistrationScreenRoute
 import com.example.project_1.ui.theme.PrimaryBlue
 import com.example.project_1.ui.theme.TextDarkPrimary
 import com.example.project_1.ui.theme.TextDarkSecondary
+import com.example.project_1.ui.theme.W700_24_35
 
 @Composable
 fun WelcomeScreen(
@@ -59,15 +60,7 @@ fun WelcomeScreen(
             modifier = Modifier
                 .padding(start = 32.dp, end = 32.dp)
         ){
-            Text(
-                text = headline,
-                fontFamily = FontFamily.SansSerif,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                color = TextDarkPrimary,
-                fontSize = 24.sp,
-                lineHeight = 35.sp
-            )
+            W700_24_35(headline, TextDarkPrimary)
         }
         Box (
             modifier = Modifier
