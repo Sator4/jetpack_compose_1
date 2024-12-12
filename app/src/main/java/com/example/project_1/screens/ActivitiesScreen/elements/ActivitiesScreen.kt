@@ -1,6 +1,7 @@
-package com.example.project_1.screens.ActivitiesScreen
+package com.example.project_1.screens.ActivitiesScreen.elements
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,13 +19,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.project_1.NewActivityScreenRoute
-import com.example.project_1.screens.elements.ActivityCard
-import com.example.project_1.screens.elements.ActivityClass
-import com.example.project_1.screens.elements.EmptyPlaceholder
+import com.example.project_1.screens.elements.BottomNavigation
 import com.example.project_1.ui.theme.BackgroundGray
 import com.example.project_1.ui.theme.PrimaryBlue
 
-//@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ActivitiesScreen(
     navController: NavController,
@@ -34,13 +32,13 @@ fun ActivitiesScreen(
     Scaffold(
         containerColor = BackgroundGray,
         topBar = {
-            ActivitiesHeader(
+            ActivitiesTopNavigation(
                 navController = navController,
                 currentTab = activitiesTab
             )
         },
         bottomBar = {
-            ActivitiesFooter(
+            BottomNavigation(
                 navController = navController,
                 currentTab = 0
             )
@@ -65,9 +63,9 @@ fun ActivitiesScreen(
         LazyColumn(
             modifier = Modifier
                 .padding(padding)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+                .fillMaxSize()
         ) {
+            println(activitiesList.size)
             items(activitiesList.toList()) { card ->
                 ActivityCard(navController, card)
             }

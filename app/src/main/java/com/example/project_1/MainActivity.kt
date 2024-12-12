@@ -6,21 +6,20 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.project_1.screens.ActivityDetailsScreen
-import com.example.project_1.screens.ActivitiesScreen.MyActivities
-import com.example.project_1.screens.ActivitiesScreen.OthersActivities
-import com.example.project_1.screens.LoginScreen
-import com.example.project_1.screens.NewActivityScreen
+import com.example.project_1.screens.ActivityDetailsScreen.ActivityDetailsScreen
+import com.example.project_1.screens.ActivitiesScreen.MyActivitiesScreen
+import com.example.project_1.screens.ActivitiesScreen.OthersActivitiesScreen
+import com.example.project_1.screens.LoginScreen.LoginScreen
+import com.example.project_1.screens.NewActivityScreen.NewActivityScreen
 import com.example.project_1.screens.ProfileScreen.ChangePasswordScreen
 import com.example.project_1.screens.ProfileScreen.ProfileScreen
-import com.example.project_1.screens.RegistrationScreen
-import com.example.project_1.screens.WelcomeScreen
+import com.example.project_1.screens.RegistrationScreen.RegistrationScreen
+import com.example.project_1.screens.WelcomeScreen.WelcomeScreen
 import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
@@ -29,12 +28,12 @@ class MainActivity : ComponentActivity() {
 //        enableEdgeToEdge()
         setContent {
             Box(
-                modifier = Modifier.padding(vertical = 24.dp)
+                modifier = Modifier.systemBarsPadding()
             ){
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = WelcomeScreenRoute,
+                    startDestination = MyActivitiesScreenRoute,
                     enterTransition = { EnterTransition.None },
                     exitTransition = { ExitTransition.None }
                 ){
@@ -47,11 +46,11 @@ class MainActivity : ComponentActivity() {
                     composable<RegistrationScreenRoute> {
                         RegistrationScreen(navController)
                     }
-                    composable<MyActivitiesRoute> {
-                        MyActivities(navController)
+                    composable<MyActivitiesScreenRoute> {
+                        MyActivitiesScreen(navController)
                     }
-                    composable<OthersActivitiesRoute> {
-                        OthersActivities(navController)
+                    composable<OthersActivitiesScreenRoute> {
+                        OthersActivitiesScreen(navController)
                     }
                     composable<ProfileScreenRoute> {
                         ProfileScreen(navController)
@@ -87,10 +86,10 @@ object LoginScreenRoute
 object RegistrationScreenRoute
 
 @Serializable
-object MyActivitiesRoute
+object MyActivitiesScreenRoute
 
 @Serializable
-object OthersActivitiesRoute
+object OthersActivitiesScreenRoute
 
 @Serializable
 object ProfileScreenRoute

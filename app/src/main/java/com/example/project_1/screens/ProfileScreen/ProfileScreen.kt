@@ -20,8 +20,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.project_1.ChangePasswordScreenRoute
 import com.example.project_1.WelcomeScreenRoute
-import com.example.project_1.screens.ActivitiesScreen.ActivitiesFooter
+import com.example.project_1.screens.elements.BottomNavigation
 import com.example.project_1.screens.elements.FormField
 import com.example.project_1.screens.elements.WideButton
 import com.example.project_1.ui.theme.PrimaryBlue
@@ -66,10 +67,10 @@ fun ProfileScreen(
                     .fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ){
+                var login by remember { mutableStateOf("") }
                 var username by remember { mutableStateOf("") }
-                var password by remember { mutableStateOf("") }
-                FormField(username, { username = it })
-                FormField(password, { password = it }, true)
+                FormField(login, "Логин", { login = it })
+                FormField(username, "Имя или никнейм", { username = it })
                 Box(
                     modifier = Modifier
                         .padding(vertical = 12.dp, horizontal = 16.dp)
@@ -82,7 +83,9 @@ fun ProfileScreen(
                         color = PrimaryBlue,
                         fontSize = 16.sp,
                         lineHeight = 24.sp,
-                        modifier = Modifier.clickable {  }
+                        modifier = Modifier.clickable {
+                            navController.navigate(ChangePasswordScreenRoute)
+                        }
                     )
                 }
             }
@@ -92,7 +95,7 @@ fun ProfileScreen(
             text = "Выйти"
         )
         }
-        ActivitiesFooter(
+        BottomNavigation(
             navController = navController,
             currentTab = 1
         )

@@ -1,6 +1,4 @@
-package com.example.project_1.screens.elements
-
-import kotlinx.serialization.Serializable
+package com.example.project_1.screens.ActivitiesScreen.elements
 
 //@Serializable
 data class ActivityClass(

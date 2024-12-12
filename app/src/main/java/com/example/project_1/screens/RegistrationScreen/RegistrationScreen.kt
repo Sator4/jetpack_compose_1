@@ -1,4 +1,4 @@
-package com.example.project_1.screens
+package com.example.project_1.screens.RegistrationScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,7 +21,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
@@ -35,11 +33,11 @@ import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.project_1.MyActivitiesRoute
-import com.example.project_1.R
+import com.example.project_1.MyActivitiesScreenRoute
 import com.example.project_1.WelcomeScreenRoute
 import com.example.project_1.screens.elements.WideButton
 import com.example.project_1.screens.elements.FormField
+import com.example.project_1.screens.elements.TopBar
 import com.example.project_1.ui.theme.TextDarkPrimary
 
 @Composable
@@ -52,30 +50,10 @@ fun RegistrationScreen(
             .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                modifier = Modifier
-                    .padding(start = 16.dp)
-                    .clickable {
-                        navController.navigate(WelcomeScreenRoute)
-                    },
-                painter = painterResource(id = R.drawable.back_arrow),
-                contentDescription = "back_arrow"
-            )
-            Text(
-                text = "Регистрация",
-                fontFamily = FontFamily.SansSerif,
-                fontWeight = FontWeight.W600,
-                color = TextDarkPrimary,
-                fontSize = 20.sp,
-                lineHeight = 24.sp,
-                modifier = Modifier.padding(16.dp)
-            )
-        }
+        TopBar(
+            navigate = { navController.navigate(WelcomeScreenRoute) },
+            header = "Регистарция"
+        )
         Column(
             Modifier.padding(16.dp)
         ) {
@@ -88,10 +66,10 @@ fun RegistrationScreen(
                 var username by remember { mutableStateOf("") }
                 var password by remember { mutableStateOf("") }
                 var repeatPassword by remember { mutableStateOf("") }
-                FormField(login, { login = it })
-                FormField(username, { username = it })
-                FormField(password, { password = it }, true)
-                FormField(repeatPassword, { repeatPassword = it }, true)
+                FormField(login, "Логин", { login = it })
+                FormField(username, "Имя или никнейм", { username = it })
+                FormField(password, "Пароль", { password = it }, true)
+                FormField(repeatPassword, "Повторите пароль", { repeatPassword = it }, true)
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -138,7 +116,7 @@ fun RegistrationScreen(
             }
             Spacer(modifier = Modifier.height(32.dp))
             WideButton(
-                onClick = { navController.navigate( MyActivitiesRoute ) },
+                onClick = { navController.navigate( MyActivitiesScreenRoute ) },
                 text = "Зарегистрироваться"
             )
             Spacer(modifier = Modifier.height(24.dp))
@@ -150,7 +128,7 @@ fun RegistrationScreen(
                     append("Нажимая на кнопку, вы соглашаетесь \nс ")
                     withLink(
                         LinkAnnotation.Url(
-                            "https://wikipedia.org",
+                            "https://ru.wikipedia.org/wiki/Конфиденциальность",
                             TextLinkStyles(style = SpanStyle(color = Color.Blue))
                         )
                     ){
@@ -159,7 +137,7 @@ fun RegistrationScreen(
                     append(" и обработки персональных данных, а также принимаете ")
                     withLink(
                         LinkAnnotation.Url(
-                            "google.com",
+                            "https://ru.wikipedia.org/wiki/Пользовательское_соглашение",
                             TextLinkStyles(style = SpanStyle(color = Color.Blue))
                         )
                     ){

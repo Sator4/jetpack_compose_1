@@ -1,4 +1,4 @@
-package com.example.project_1.screens.ActivitiesScreen
+package com.example.project_1.screens.ActivitiesScreen.elements
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,12 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.project_1.MyActivitiesRoute
-import com.example.project_1.OthersActivitiesRoute
+import com.example.project_1.MyActivitiesScreenRoute
+import com.example.project_1.OthersActivitiesScreenRoute
 import com.example.project_1.ui.theme.PrimaryBlue
 
 @Composable
-fun ActivitiesHeader(
+fun ActivitiesTopNavigation(
     navController: NavController,
     currentTab: Int
 ){
@@ -34,7 +34,7 @@ fun ActivitiesHeader(
                 .background(Color.White)
                 .fillMaxWidth().weight(1f)
                 .height(48.dp)
-                .clickable { navController.navigate(MyActivitiesRoute) },
+                .clickable { navController.navigate(MyActivitiesScreenRoute) },
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ){
@@ -58,7 +58,7 @@ fun ActivitiesHeader(
             modifier = Modifier
                 .fillMaxWidth().weight(1f)
                 .height(48.dp)
-                .clickable { navController.navigate(OthersActivitiesRoute) },
+                .clickable { navController.navigate(OthersActivitiesScreenRoute) },
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ){
