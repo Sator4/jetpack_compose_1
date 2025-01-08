@@ -13,8 +13,8 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun RegularFont(
     text: String,
-    color: Color,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    color: Color = TextDarkPrimary
 ){
     Text(
         text = text,
@@ -23,6 +23,7 @@ fun RegularFont(
         color = color,
         fontSize = 16.sp,
         lineHeight = 24.sp,
+        textAlign = TextAlign.Center,
         modifier = modifier
     )
 }
@@ -30,8 +31,8 @@ fun RegularFont(
 @Composable
 fun BigFont(
     text: String,
-    color: Color,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    color: Color = TextDarkPrimary
 ){
     Text(
         text = text,

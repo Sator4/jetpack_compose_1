@@ -8,12 +8,10 @@ data class Activity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val activityType: String,
-    val distance: String,
-    val time: String,
-    val date: String,
-    val usertag: String? = null,
+    val distance: Double,  // meters
+    val usertag: String = "",
     val comment: String = "",
-    val startTime: String = "00:00:00",
-    val finishTime: String = "00:00:00"
+    val startTime: Long,
+    val finishTime: Long
 //    val coords: List
 )

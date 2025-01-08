@@ -25,10 +25,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.project_1.R
 import com.example.project_1.Screen
-import com.example.project_1.ui.theme.PrimaryBlue
-import com.example.project_1.ui.theme.TextDarkPrimary
-import com.example.project_1.ui.theme.TextDarkSecondary
 import com.example.project_1.ui.theme.BigFont
+import com.example.project_1.ui.theme.PrimaryBlue
+import com.example.project_1.ui.theme.TextDarkSecondary
 
 @Composable
 fun WelcomeScreen(
@@ -53,7 +52,7 @@ fun WelcomeScreen(
             modifier = Modifier
                 .padding(start = 32.dp, end = 32.dp)
         ){
-            BigFont(headline, TextDarkPrimary)
+            BigFont(headline)
         }
         Box (
             modifier = Modifier

@@ -10,13 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.project_1.ui.theme.TextDarkPrimary
-import com.example.project_1.ui.theme.TextDarkSecondary
-import com.example.project_1.ui.theme.RegularFont
 import com.example.project_1.ui.theme.BigFont
+import com.example.project_1.ui.theme.RegularFont
+import com.example.project_1.ui.theme.TextDarkSecondary
 
 @Composable
 fun EmptyPlaceholder(
+    placeholderHeadline: String,
+    placeholderText: String
 ){
     Column(
         modifier = Modifier
@@ -25,8 +26,8 @@ fun EmptyPlaceholder(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        BigFont("Время потренить", TextDarkPrimary)
+        BigFont(placeholderHeadline)
         Spacer(modifier = Modifier.height(8.dp))
-        RegularFont("Нажимай на кнопку ниже и начинаем трекать активность", TextDarkSecondary)
+        RegularFont(placeholderText, color = TextDarkSecondary)
     }
 }

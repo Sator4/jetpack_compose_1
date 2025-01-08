@@ -21,11 +21,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.project_1.Screen
+import com.example.project_1.ui.theme.PrimaryBlue
+import com.example.project_1.ui.theme.TextDarkPrimary
 import com.example.project_1.view.elements.BottomNavigation
 import com.example.project_1.view.elements.FormField
 import com.example.project_1.view.elements.WideButton
-import com.example.project_1.ui.theme.PrimaryBlue
-import com.example.project_1.ui.theme.TextDarkPrimary
 
 @Composable
 fun ProfileScreen(

@@ -32,17 +32,26 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.project_1.Screen
-import com.example.project_1.view.elements.WideButton
+import com.example.project_1.ui.theme.TextDarkPrimary
 import com.example.project_1.view.elements.FormField
 import com.example.project_1.view.elements.TopBar
-import com.example.project_1.ui.theme.TextDarkPrimary
+import com.example.project_1.view.elements.WideButton
+import com.example.project_1.viewmodel.AuthViewModel
 
 @Composable
 fun RegistrationScreen(
-    navController: NavController
+    navController: NavController,
+    authViewModel: AuthViewModel = hiltViewModel()
 ){
+    var login by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var repeatPassword by remember { mutableStateOf("") }
+    var errorLogin by remember { mutableStateOf("") }
+    var errorPassword by remember { mutableStateOf("") }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -61,13 +70,15 @@ fun RegistrationScreen(
                     .fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                var login by remember { mutableStateOf("") }
-                var username by remember { mutableStateOf("") }
-                var password by remember { mutableStateOf("") }
-                var repeatPassword by remember { mutableStateOf("") }
                 FormField(login, "Логин", { login = it })
+                if (errorLogin != ""){
+                    Text(text = errorLogin, color = Color.Red, fontSize = 12.sp)
+                }
                 FormField(username, "Имя или никнейм", { username = it })
                 FormField(password, "Пароль", { password = it }, true)
+                if (errorPassword != ""){
+                    Text(text = errorPassword, color = Color.Red, fontSize = 12.sp)
+                }
                 FormField(repeatPassword, "Повторите пароль", { repeatPassword = it }, true)
             }
             Spacer(modifier = Modifier.height(8.dp))
@@ -115,7 +126,12 @@ fun RegistrationScreen(
             }
             Spacer(modifier = Modifier.height(32.dp))
             WideButton(
-                onClick = { navController.navigate(Screen.MyActivitiesScreenRoute.route) },
+                onClick = {
+                    errorPassword = authViewModel.checkPassword(password)
+                    if (errorPassword == ""){
+                        navController.navigate(Screen.MyActivitiesScreenRoute.route)
+                    }
+                },
                 text = "Зарегистрироваться"
             )
             Spacer(modifier = Modifier.height(24.dp))

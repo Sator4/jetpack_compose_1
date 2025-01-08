@@ -8,27 +8,20 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import androidx.room.Room
-import com.example.project_1.model.room.ActivitiesDatabase
-import com.example.project_1.view.screens.ActivityDetailsScreen.ActivityDetailsScreen
 import com.example.project_1.view.screens.ActivitiesScreen.MyActivitiesScreen
 import com.example.project_1.view.screens.ActivitiesScreen.OthersActivitiesScreen
+import com.example.project_1.view.screens.ActivityDetailsScreen.ActivityDetailsScreen
 import com.example.project_1.view.screens.LoginScreen.LoginScreen
 import com.example.project_1.view.screens.NewActivityScreen.NewActivityScreen
 import com.example.project_1.view.screens.ProfileScreen.ChangePasswordScreen
 import com.example.project_1.view.screens.ProfileScreen.ProfileScreen
 import com.example.project_1.view.screens.RegistrationScreen.RegistrationScreen
 import com.example.project_1.view.screens.WelcomeScreen.WelcomeScreen
-import com.example.project_1.viewmodel.ActivitiesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

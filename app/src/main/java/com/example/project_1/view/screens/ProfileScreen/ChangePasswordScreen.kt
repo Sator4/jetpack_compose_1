@@ -14,11 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.project_1.Screen
+import com.example.project_1.ui.theme.PrimaryBlue
 import com.example.project_1.view.elements.BottomNavigation
 import com.example.project_1.view.elements.FormField
 import com.example.project_1.view.elements.TopBar
 import com.example.project_1.view.elements.WideButton
-import com.example.project_1.ui.theme.PrimaryBlue
 
 @Composable
 fun ChangePasswordScreen(
@@ -35,13 +35,13 @@ fun ChangePasswordScreen(
                 .weight(1f),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            var old_password by remember { mutableStateOf("") }
-            var new_password by remember { mutableStateOf("") }
-            var repeat_password by remember { mutableStateOf("") }
-            FormField(old_password, "Старый пароль", { old_password = it }, password = true)
+            var oldPassword by remember { mutableStateOf("") }
+            var newPassword by remember { mutableStateOf("") }
+            var repeatPassword by remember { mutableStateOf("") }
+            FormField(oldPassword, "Старый пароль", { oldPassword = it }, password = true)
             Spacer(modifier = Modifier.height(0.dp))
-            FormField(new_password, "Новый пароль", { new_password = it }, password = true)
-            FormField(repeat_password, "Повторите пароль", { repeat_password = it }, password = true)
+            FormField(newPassword, "Новый пароль", { newPassword = it }, password = true)
+            FormField(repeatPassword, "Повторите пароль", { repeatPassword = it }, password = true)
             Spacer(modifier = Modifier.height(0.dp))
             WideButton(
                 onClick = { navController.navigate(Screen.ProfileScreenRoute.route) },

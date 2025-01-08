@@ -39,7 +39,12 @@ fun BottomNavigation(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ){
-            Image(painter = if (currentTab == 0) painterResource(id = R.drawable.whistle_blue) else painterResource(id = R.drawable.whistle_grey), contentDescription = "")
+            Image(painter =
+                if (currentTab == 0)
+                    painterResource(id = R.drawable.whistle_blue)
+                else
+                    painterResource(id = R.drawable.whistle_grey),
+                contentDescription = "")
             Text(
                 text = "Активность",
                 color = if (currentTab == 0) PrimaryBlue else TextDarkPrimary
@@ -53,7 +58,12 @@ fun BottomNavigation(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ){
-            Image(painter = if (currentTab == 1) painterResource(id = R.drawable.person_blue) else painterResource(id = R.drawable.person_grey), contentDescription = "")
+            Image(painter =
+                if (currentTab == 1)
+                    painterResource(id = R.drawable.person_blue)
+                else
+                    painterResource(id = R.drawable.person_grey),
+                contentDescription = "")
             Text(
                 text = "Профиль",
                 color = if (currentTab == 1) PrimaryBlue else TextDarkPrimary
