@@ -1,21 +1,22 @@
 package com.example.project_1.ui.theme
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.PaddingValues
+
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun W400_16_24(
+fun RegularFont(
     text: String,
-    color: Color,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    color: Color = TextDarkPrimary
+
 ){
     Text(
         text = text,
@@ -24,15 +25,17 @@ fun W400_16_24(
         color = color,
         fontSize = 16.sp,
         lineHeight = 24.sp,
+        textAlign = TextAlign.Center,
+
         modifier = modifier
     )
 }
 
 @Composable
-fun W700_24_35(
+fun BigFont(
     text: String,
-    color: Color,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    color: Color = TextDarkPrimary
 ){
     Text(
         text = text,
@@ -41,6 +44,7 @@ fun W700_24_35(
         color = color,
         fontSize = 24.sp,
         lineHeight = 35.sp,
-        modifier = modifier
+        modifier = modifier,
+        textAlign = TextAlign.Center
     )
 }

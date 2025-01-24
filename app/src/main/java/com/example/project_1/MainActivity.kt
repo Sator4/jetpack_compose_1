@@ -6,67 +6,82 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.project_1.screens.ActivityDetailsScreen
-import com.example.project_1.screens.ActivitiesScreen.MyActivities
-import com.example.project_1.screens.ActivitiesScreen.OthersActivities
-import com.example.project_1.screens.LoginScreen
-import com.example.project_1.screens.NewActivityScreen
-import com.example.project_1.screens.ProfileScreen.ChangePasswordScreen
-import com.example.project_1.screens.ProfileScreen.ProfileScreen
-import com.example.project_1.screens.RegistrationScreen
-import com.example.project_1.screens.WelcomeScreen
-import kotlinx.serialization.Serializable
+import androidx.navigation.navArgument
+import com.example.project_1.view.screens.ActivitiesScreen.MyActivitiesScreen
+import com.example.project_1.view.screens.ActivitiesScreen.OthersActivitiesScreen
+import com.example.project_1.view.screens.ActivityDetailsScreen.ActivityDetailsScreen
+import com.example.project_1.view.screens.LoginScreen.LoginScreen
+import com.example.project_1.view.screens.NewActivityScreen.NewActivityScreen
+import com.example.project_1.view.screens.ProfileScreen.ChangePasswordScreen
+import com.example.project_1.view.screens.ProfileScreen.ProfileScreen
+import com.example.project_1.view.screens.RegistrationScreen.RegistrationScreen
+import com.example.project_1.view.screens.WelcomeScreen.WelcomeScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+//    private val database = ActivitiesDatabase.getDatabase(applicationContext)
+//
+//    private val viewModelFactory = object : ViewModelProvider.Factory {
+//        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//            return ActivitiesViewModel(database.activityDao()) as T
+//        }
+//    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
         setContent {
             Box(
-                modifier = Modifier.padding(vertical = 24.dp)
+                modifier = Modifier.systemBarsPadding()
             ){
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = WelcomeScreenRoute,
+                    startDestination = Screen.MyActivitiesScreenRoute.route,
                     enterTransition = { EnterTransition.None },
                     exitTransition = { ExitTransition.None }
                 ){
-                    composable<WelcomeScreenRoute>{
+                    composable(Screen.WelcomeScreenRoute.route) {
                         WelcomeScreen(navController)
                     }
-                    composable<LoginScreenRoute> {
+                    composable(Screen.LoginScreenRoute.route) {
                         LoginScreen(navController)
                     }
-                    composable<RegistrationScreenRoute> {
+                    composable(Screen.RegistrationScreenRoute.route) {
                         RegistrationScreen(navController)
                     }
-                    composable<MyActivitiesRoute> {
-                        MyActivities(navController)
+                    composable(Screen.MyActivitiesScreenRoute.route) {
+                        MyActivitiesScreen(navController)
                     }
-                    composable<OthersActivitiesRoute> {
-                        OthersActivities(navController)
+                    composable(Screen.OthersActivitiesScreenRoute.route) {
+                        OthersActivitiesScreen(navController)
                     }
-                    composable<ProfileScreenRoute> {
+                    composable(Screen.ProfileScreenRoute.route) {
                         ProfileScreen(navController)
                     }
-                    composable<ChangePasswordScreenRoute> {
+                    composable(Screen.ChangePasswordScreenRoute.route) {
                         ChangePasswordScreen(navController)
                     }
-//                    composable<ActivityDetailsScreenRoute> {
-//                        val args = it.toRoute<ActivityDetailsScreenRoute>()
-//                        ActivityDetailsScreen(navController, args.activity)
-//                    }
-                    composable<ActivityDetailsScreenRoute>{
-                        ActivityDetailsScreen(navController)
+                    composable(
+                        route = Screen.ActivityDetailsScreenRoute.route + "/{id}",
+                        arguments = listOf(
+                            navArgument("id"){ type = NavType.IntType })
+                    ) { entry ->
+                        entry.arguments?.let {
+                            ActivityDetailsScreen(
+                                navController = navController,
+                                activityId = it.getInt("id")
+                            )
+                        }
                     }
-                    composable<NewActivityScreenRoute> {
+                    composable(Screen.NewActivityScreenRoute.route) {
                         NewActivityScreen(navController)
                     }
                 }
@@ -77,32 +92,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Serializable
-object WelcomeScreenRoute
 
-@Serializable
-object LoginScreenRoute
-
-@Serializable
-object RegistrationScreenRoute
-
-@Serializable
-object MyActivitiesRoute
-
-@Serializable
-object OthersActivitiesRoute
-
-@Serializable
-object ProfileScreenRoute
-
-@Serializable
-object ChangePasswordScreenRoute
-
-@Serializable
-object ActivityDetailsScreenRoute
-//data class ActivityDetailsScreenRoute (
-//    val activity: ActivityClass
-//)
-
-@Serializable
-object NewActivityScreenRoute
+sealed class Screen(val route: String){
+    object WelcomeScreenRoute : Screen("welcome_screen_route")
+    object LoginScreenRoute : Screen("login_screen_route")
+    object RegistrationScreenRoute : Screen("registration_screen_route")
+    object MyActivitiesScreenRoute : Screen("my_activities_screen_route")
+    object OthersActivitiesScreenRoute : Screen("others_activities_screen_route")
+    object ProfileScreenRoute : Screen("profile_screen_route")
+    object ChangePasswordScreenRoute : Screen("change_password_screen_route")
+    object ActivityDetailsScreenRoute : Screen("activity_details_screen_route")
+    object NewActivityScreenRoute : Screen("new_activity_screen_route")
+}
