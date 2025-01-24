@@ -5,6 +5,7 @@ plugins {
 //    id("kotlin-kapt")
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.compose.compiler)
+
 }
 
 android {
@@ -64,7 +65,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.material)
+
     implementation(libs.androidx.runtime.livedata)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -89,4 +92,5 @@ dependencies {
 
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
 }

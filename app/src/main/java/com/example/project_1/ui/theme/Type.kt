@@ -1,5 +1,6 @@
 package com.example.project_1.ui.theme
 
+
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,6 +16,7 @@ fun RegularFont(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = TextDarkPrimary
+
 ){
     Text(
         text = text,
@@ -24,6 +26,7 @@ fun RegularFont(
         fontSize = 16.sp,
         lineHeight = 24.sp,
         textAlign = TextAlign.Center,
+
         modifier = modifier
     )
 }
